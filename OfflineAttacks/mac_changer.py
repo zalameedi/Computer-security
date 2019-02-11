@@ -1,6 +1,10 @@
 #! usr/bin/env python
 
-# Script to change mac_address, difference being the cmd line options -i and -m
+# Programmer: Zeid Al-Ameedi
+# Details: 
+# Run as    python script.py -i [interface] -m [new mac address]
+# Changes the mac address on desired network interface. Uses Regex
+# to determine if successful by parsing ifconfig command
 
 import subprocess
 import optparse
