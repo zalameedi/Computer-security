@@ -4,7 +4,7 @@
 
 import subprocess
 import optparse
-
+import re
 
 def main():
     global interface
@@ -28,7 +28,12 @@ def newMac():
     subprocess.call(["ifconfig", interface, "hw", "ether", new_mac])
     subprocess.call(["ifconfig", interface, "up"])
 
-    print("[+] Mac Address successfully changed to {0}".format(new_mac))
+    output = subprocess.check_output(["ifconfig", interface])
+    matches = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", output)
+    if(new_mac in matches.group()):
+        print("[+] Mac Address successfully changed to {0}".format(new_mac))
+    else:
+        print("[-] Mac Address was not changed.")
 
 if __name__ == '__main__':
     main()
