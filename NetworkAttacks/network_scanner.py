@@ -57,8 +57,10 @@ def getMac():
 
 def main():
     global interface
+    global target_IP
 
     parser = optparse.OptionParser()
+    parser.add_option("-t", "--target", dest="target_IP", help = "Give IP Address directly.")
     parser.add_option("-i", "--interface", dest="interface", help="Network interface to extract IP & mac addr")
     (options, par) = parser.parse_args()
     if not options.interface:
@@ -66,6 +68,9 @@ def main():
         get_AllmacAddr()
         print("\n[+] IP Addresses \n")
         get_AllipAddr()
+    if options.target_IP:
+            target_IP=options.target_IP
+            scan(str(i)+'/24')
     else:
         interface=options.interface
         print("\n[+] My IP Address \n")
