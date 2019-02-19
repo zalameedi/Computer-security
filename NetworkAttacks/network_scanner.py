@@ -63,14 +63,14 @@ def main():
     parser.add_option("-t", "--target", dest="target_IP", help = "Give IP Address directly.")
     parser.add_option("-i", "--interface", dest="interface", help="Network interface to extract IP & mac addr")
     (options, par) = parser.parse_args()
-    if not options.interface:
+    if not options.interface and not options.target_IP:
         print("[+] Mac Addresses \n")
         get_AllmacAddr()
         print("\n[+] IP Addresses \n")
         get_AllipAddr()
-    if options.target_IP:
+    elif options.target_IP:
             target_IP=options.target_IP
-            scan(str(i)+'/24')
+            scan(str(target_IP)+'/24')
     else:
         interface=options.interface
         print("\n[+] My IP Address \n")
