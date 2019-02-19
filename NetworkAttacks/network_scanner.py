@@ -7,7 +7,7 @@
 # Details: Code that uses module netifaces to access and get back your mac/ip address if an interface is specified.
 # Possible that a machine might have more than one address. Thus we loop through ni.interfaces() and access the AF_LINK/
 # AF_INET method which is a list of dictionaries to grab all the neccessary addresses.
-# THEN the ARP request/response begins on all networks of the subnet
+# THEN the ARP request/response begins on everything within the subnet
 
 
 import scapy.all as scapy
