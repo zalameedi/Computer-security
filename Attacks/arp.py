@@ -19,7 +19,7 @@ def scan(ip):
         try:
             print(element[1].psrc + "\t\t" + element[1].hwsrc)
         except:
-            print("That didn't work as expected!\n")
+            return 0
 
 
 def main():
