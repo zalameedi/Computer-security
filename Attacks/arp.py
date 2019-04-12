@@ -2,9 +2,9 @@ import scapy.all as scapy
 import subprocess
 import sys
 import re
+import socket
 
-opt_ip = ""
-
+ip = socket.gethostbyname(socket.gethostname())
 
 def scan(ip):
     arp_request = scapy.ARP(pdst=ip) #Creates a request with that IP
@@ -23,12 +23,10 @@ def scan(ip):
 
 
 def main():
-    global opt_ip
-    if opt_ip != "":
-        opt_ip = opt_ip[::-4]
-        scan(str(opt_ip))
-    else:
-        scan("")
+    global ip
+    while ip[-1] != '.':
+        ip = ip[:-1]
+    scan(ip + "1/24")
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
