@@ -44,8 +44,11 @@ def get_AllmacAddr():
 
 def get_AllipAddr():
     for i in ni.interfaces():
-        ip = ni.ifaddresses(i)[ni.AF_INET][0]['addr']
-        print(ip)
+        try:
+            ip = ni.ifaddresses(i)[ni.AF_INET][0]['addr']
+            print(ip)
+        except:
+            print("That IP won't work.")
 
 def getIP():
     ip = ni.ifaddresses(interface)[ni.AF_INET][0]['addr']
