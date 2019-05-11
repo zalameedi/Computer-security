@@ -3,6 +3,7 @@
 import scapy.all as scapy
 from subprocess import Popen, PIPE
 import re
+import subprocess
 import os
 import sys
 import time
@@ -31,6 +32,7 @@ def restore(t_ip, m_ip, s_ip, s_m):
     print("[+] ARP table restored.")
 
 def main():
+    subprocess.call("echo > 1 /proc/sys/net/ipv4/ip_forward", shell=True)
     if(len(sys.argv) < 2):
         print("Pass in Target IP/MAC + Spoof IP/MAC. . .")
     else:
