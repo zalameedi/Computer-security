@@ -1,3 +1,3 @@
 # security
-Hacking, exploits, scripts and fundamental cyber security concepts.
+Hacking, exploits, scripts and fundamental security concepts.
 
