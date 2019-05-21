@@ -1,0 +1,8 @@
+# PORT FORWARDING
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+# Accepting packets
+iptables -I INPUT -j NFQUEUE --queue-num 0
+
+# FLUSH table
+iptables --flush

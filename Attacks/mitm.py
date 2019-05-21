@@ -32,7 +32,8 @@ def restore(t_ip, m_ip, s_ip, s_m):
     print("[+] ARP table restored.")
 
 def main():
-    subprocess.call("echo > 1 /proc/sys/net/ipv4/ip_forward", shell=True)
+    # DO NOT FORGET PORT FORWARDING!
+    # subprocess.call("echo > 1 /proc/sys/net/ipv4/ip_forward", shell=True)
     if(len(sys.argv) < 2):
         print("Pass in Target IP/MAC + Spoof IP/MAC. . .")
     else:
